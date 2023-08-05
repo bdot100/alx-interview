@@ -11,18 +11,17 @@ from collections import deque
 def canUnlockAll(boxes):
     """This function determines if all the
     boxes can be opened."""
-    n = len(boxes)
-    visited = set()
-    queue = deque([0])  # Start with the first box (index 0) in the queue.
+    position = 0
+    unlocked = {}
 
-    while queue:
-        currentBox = queue.popleft()  # Get the current box from the front of the queue.
-        visited.add(currentBox)      # Mark the current box as visited.
-
-        for key in boxes[currentBox]:
-            if key not in visited:
-                queue.append(key)  # Add the box unlocked by the current key to the queue.
-
-    # If we have visited all the boxes (n boxes in total), return True; otherwise, return False.
-    return len(visited) == n
+    for box in boxes:
+        if len(box) == 0 or position == 0:
+            unlocked[position] = "always_unlocked"
+        for key in box:
+            if key < len(boxes) and key != position:
+                unlocked[key] = key
+        if len(unlocked) == len(boxes):
+            return True
+        position += 1
+    return False
 
