@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 """
-Defines a function that determines if a box containing a list
-   of lists can be opened using keys stored in the lists
+Defines a function that determines if a box containing
+a list of lists can be opened using keys stored in the lists
 """
-
-
-from collections import deque
 
 
 def canUnlockAll(boxes):
@@ -16,7 +13,7 @@ def canUnlockAll(boxes):
 
     for box in boxes:
         if len(box) == 0 or position == 0:
-            unlocked[position] = "always_unlocked"
+            unlocked[position] = "unlocked"
         for key in box:
             if key < len(boxes) and key != position:
                 unlocked[key] = key
@@ -24,4 +21,3 @@ def canUnlockAll(boxes):
             return True
         position += 1
     return False
-
