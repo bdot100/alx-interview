@@ -15,4 +15,3 @@ def minOperations(n):
             n /= min_operations
         min_operations += 1
     return no_of_operations
-    
